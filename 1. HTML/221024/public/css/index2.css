@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    width: 300px;
+    height: 300px;
+}
+
+.box1 {
+    position: relative;
+    left: 0px;
+    top: 200px;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1;
+    background: red;
+}
+
+.box2 {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: yellow;
+    height: 400px;
+    z-index: 1;
+}

@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#icon {
+    display: none;
+}
+
+#icon + label {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#icon + label > span {
+    position: absolute;
+    display: block;
+    border-radius: 30px;
+    height: 5px;
+    width: 100%;
+    background: #000000;
+    transition: all 0.35s;
+}
+
+#icon + label > span:nth-child(1) {
+    top: 0px;
+}
+
+#icon + label > span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#icon + label > span:nth-child(3) {
+    bottom: 0px;
+}
+
+#icon:checked + label > span:nth-child(1) {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+#icon:checked + label > span:nth-child(2) {
+    opacity: 0;
+}
+
+#icon:checked + label > span:nth-child(3) {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+#icon:checked + label + div {
+    left: 0px;
+}
+
+#icon + label + div {
+    position: fixed;
+    padding: 50px;
+    left: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: red;
+    box-sizing: border-box;
+    z-index: 1;
+    transition: all 0.35s;
+}

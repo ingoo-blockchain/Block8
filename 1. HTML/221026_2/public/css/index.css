@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"] + label {
+    display: inline-block;
+    padding: 20px;
+    background: #ccc;
+    color: #999;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+input[type="radio"]:checked + label {
+    background: #aaa;
+    color: #333;
+}
+
+.box {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: #999;
+    left: -500px;
+}
+
+#tab1:checked ~ .con1 {
+    left: 0;
+    transition: all 0.8s;
+}
+
+#tab2:checked ~ .con2 {
+    left: 0px;
+    transition: all 0.8s;
+}
+
+#tab3:checked ~ .con3 {
+    left: 0px;
+    transition: all 0.8s;
+}

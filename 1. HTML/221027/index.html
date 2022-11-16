@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link href="./public/css/index.css" rel="stylesheet" />
+    </head>
+    <body>
+        <input type="checkbox" id="layer_btn" />
+        <div id="layer">
+            <div id="content">
+                <h2>
+                    <span>로그인</span>
+                    <span><label for="layer_btn">X</label></span>
+                </h2>
+                <div class="login_frm">
+                    <!--
+                        GET
+
+                        URL 에 표현됨. 
+                        
+                        queryString 
+                        ex) naver.com?userid=web7722&userpw=1234
+
+                        POST
+                        URL 에 안보임
+                        userid=web7722&userpw=1234
+
+                        GET URL에 데이터가보이고
+                        POST URL 데이터가 안보인다.
+
+                        ?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=html
+
+                        웹페이지가 link
+                        html css 
+
+                    -->
+                    <form method="get" action="https://search.naver.com/search.naver">
+                        <input type="hidden" name="where" value="nexearch" />
+                        <span class="int">
+                            <input type="text" name="userid" id="uid" placeholder="아이디를 입력해주세요." />
+                        </span>
+                        <span class="int">
+                            <input type="password" name="userpw" id="upw" placeholder="패스워드를 입력해주세요." />
+                        </span>
+                        <button type="submit">로그인</button>
+                        <span> 아직도 회원이 아니신가요? <a href="">회원가입</a> </span>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="wrap">
+            <div id="header">
+                <h1>logo</h1>
+                <ul>
+                    <li>
+                        <label for="layer_btn"> menu </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

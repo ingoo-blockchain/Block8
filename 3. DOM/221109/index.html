@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./public/js/index.js" type="text/javascript"></script>
+        <style>
+            #error {
+                color: red;
+                font-size: 12px;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="get" id="loginForm" action="http://google.com">
+            <input type="text" id="uid" name="userid" value="" />
+            <input type="password" id="upw" name="userpw" value="" />
+            <button type="submit">로그인</button>
+        </form>
+        <div id="error">아이디나 패스워드가 비워있슴!</div>
+        <ul id="userList"></ul>
+
+        <h3>비밀번호</h3>
+        <input type="text" id="pw" />
+        <h3>비밀번호 확인</h3>
+        <input type="text" id="repw" />
+        <div id="pwError"></div>
+        <script src="./public/js/onchange.js" type="text/javascript"></script>
+    </body>
+</html>

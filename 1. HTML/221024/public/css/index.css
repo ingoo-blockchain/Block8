@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+#wrap {
+    width: 100%;
+}
+
+#header {
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+#header > h1 {
+    float: left;
+}
+
+#header > ul {
+    float: right;
+    padding: 20px 0;
+}
+
+#header > ul > li {
+    float: left;
+}
+
+#header > ul > li > a {
+    display: inline-block;
+    text-align: center;
+    width: 180px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #004385;
+}
+
+#visual {
+    position: relative;
+    height: 500px;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+#visual > ul > li {
+    position: absolute;
+    top: 0px;
+}
+
+#visual > div {
+    position: absolute;
+    width: 100%;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.5);
+    bottom: 0px;
+    z-index: 5;
+}
+
+#cotents {
+    margin: 20px 0 0 0;
+}
+
+#main_content {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#lecture {
+    float: left;
+    width: 600px;
+}
+
+#lecture > ul > li {
+    float: left;
+    width: 300px;
+    height: 230px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+#community {
+    float: right;
+    width: 600px;
+}
+
+#community > #interview {
+    float: left;
+    width: 300px;
+    height: 500px;
+    background: red;
+}
+
+#community > #review {
+    float: left;
+    width: 300px;
+    height: 500px;
+    background: blue;
+}
+
+#community > #media {
+    width: 600px;
+    background: yellow;
+}

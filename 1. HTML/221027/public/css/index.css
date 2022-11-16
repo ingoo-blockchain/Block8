@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#layer_btn {
+    display: none;
+}
+
+#layer {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+#layer_btn:checked ~ #layer {
+    display: flex;
+}
+
+#layer > #content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 300px;
+    box-shadow: 5px 5px 15px 0px #666;
+    background: #fff;
+}
+
+#content > h2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 20%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ddd;
+}
+
+#content > .login_frm {
+    width: 400px;
+    height: 80%;
+}
+
+#content > .login_frm > form {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#content > .login_frm > form > .int > input {
+    width: 100%;
+    padding: 7px 14px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+#content > .login_frm > form > button[type="submit"] {
+    width: 100%;
+    padding: 7px 14px;
+    border-radius: 0px;
+    border: none;
+    background: #ddd;
+    font-size: 14px;
+    font-weight: bold;
+}

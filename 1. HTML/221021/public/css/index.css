@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+#wrap {
+    width: 100%;
+}
+
+#header {
+    width: 800px;
+    height: 100px;
+    margin: 0 auto;
+    background: red;
+}
+
+#header > h1 {
+    float: left;
+}
+
+#header > ul {
+    float: right;
+    margin: 10px 0 0 0;
+}
+
+#header > ul > li {
+    display: inline-block;
+}
+
+#visual {
+    height: 300px;
+    background: yellow;
+}
+
+#contents {
+    height: 500px;
+    background: blue;
+}
+
+#footer {
+    height: 100px;
+    background: silver;
+}

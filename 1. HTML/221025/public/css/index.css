@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+}
+
+#header {
+    width: 1200px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+#header > #logo {
+    padding: 20px 0 0 0;
+    float: left;
+    box-sizing: border-box;
+}
+
+#header > #gnb {
+    float: right;
+}
+
+#header > #gnb > ul > li {
+    float: left;
+}
+
+#header > #gnb > ul > li > a {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    width: 180px;
+    padding: 40px 0;
+    text-align: center;
+}
+
+#visual #visual > ul > li {
+    float: left;
+}
+
+#contents {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#main_content {
+    margin: 15px 0 0 0;
+}
+
+#main_content > #lecture {
+    float: left;
+    width: 600px;
+    border-top: 1px solid #ececec;
+    border-left: 1px solid #ececec;
+    box-sizing: border-box;
+}
+
+#main_content > #lecture > ul > li {
+    float: left;
+    width: 50%;
+    height: 230px;
+    padding: 20px;
+    border-right: 1px solid #ececec;
+    border-bottom: 1px solid #ececec;
+    box-sizing: border-box;
+}
+
+.con1 {
+    background: url("http://www.kiweb.or.kr/images/main_new/main_con_ic_01.png") 172px 100px no-repeat;
+}
+
+#main_content > #lecture > ul > li > h2 {
+    color: #2d2d2d;
+    font-size: 22px;
+}
+
+#main_content > #lecture > ul > li > h2 > span {
+    display: block;
+    font-size: 12px;
+    color: #4689e1;
+}
+
+#main_content > #lecture > ul > li > p {
+    font-size: 12px;
+    width: 50%;
+    margin: 30px 0 0 0;
+}
+
+#main_content > #lecture > ul > li > a {
+    display: inline-block;
+    margin: 40px 0 0 0;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    background: #81b4f2;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#main_content > #lecture > ul > li > a:hover {
+    background: #6da6ea;
+}
+
+#main_content > #community {
+    float: left;
+    width: 600px;
+}

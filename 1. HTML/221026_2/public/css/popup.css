@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+#layer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+#layer > #content {
+    width: 600px;
+    height: 500px;
+    box-shadow: 5px 5px 30px 5px #000;
+    /*
+        1. X축 위치 조절 양수 음수 가능
+        2. Y축 위치 조절 양수 음수 가능
+        3. blur 안경 
+        4. 그림자의 크기 (default 그림자주는 영역임 )
+        5. 그림자 색상
+        6. inner.. inset 
+    */
+    background: #fff;
+}

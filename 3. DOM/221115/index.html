@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>
+            Value :
+            <span id="counter"></span>
+        </h1>
+        <button id="increment">+</button>
+        <button id="decrement">-</button>
+        <script type="text/javascript">
+            const display = document.querySelector("#counter")
+            const incrementBtn = document.querySelector("#increment")
+            const decrementBtn = document.querySelector("#decrement")
+
+            let num = 0
+            display.innerHTML = num
+
+            function handler(e) {
+                display.innerHTML = e.target.id === "increment" ? ++num : --num
+            }
+            incrementBtn.addEventListener("click", handler)
+            decrementBtn.addEventListener("click", handler)
+        </script>
+    </body>
+</html>

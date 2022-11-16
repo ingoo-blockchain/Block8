@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            ul,
+            li {
+                list-style: none;
+            }
+            table {
+                width: 800px;
+                border-collapse: collapse;
+            }
+
+            table th {
+                padding: 14px 21px;
+                /*
+                    #efefef
+                    #eeeeee
+                    #ececec
+                    #cccccc
+                    #dddddd
+                    #333333
+                    #666666
+                    #999999
+                */
+                background: #ececec;
+                color: #666;
+                font-size: 12px;
+                border-top: 2px solid #333;
+                border-bottom: 1px solid #ddd;
+            }
+
+            table td {
+                text-align: center;
+                padding: 14px 21px;
+                color: #666;
+                border-bottom: 1px solid #ddd;
+            }
+
+            table tr:hover {
+                background: #eee;
+                cursor: pointer;
+            }
+
+            .subject {
+                width: 45%;
+                text-align: left;
+            }
+
+            .paging {
+                padding: 20px 0;
+                width: 800px;
+            }
+
+            .paging > ul {
+                display: flex;
+                justify-content: center;
+            }
+
+            .paging > ul > li {
+                padding: 8px;
+                background: #efefef;
+                border: 1px solid #999;
+                font-size: 12px;
+                margin-left: 10px;
+            }
+
+            .paging > ul > li:hover {
+                background: #333;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            .active {
+                background: #333 !important;
+                color: #fff;
+            }
+        </style>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td class="subject">hi</td>
+                <td>web7722</td>
+                <td>2022-10-26</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td class="subject">hi</td>
+                <td>web7722</td>
+                <td>2022-10-26</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td class="subject">hi</td>
+                <td>web7722</td>
+                <td>2022-10-26</td>
+                <td>0</td>
+            </tr>
+        </table>
+        <div class="paging">
+            <ul>
+                <li>prev</li>
+                <li class="active">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>next</li>
+            </ul>
+        </div>
+    </body>
+</html>
