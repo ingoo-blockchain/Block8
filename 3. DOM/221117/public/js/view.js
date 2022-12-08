@@ -1,3 +1,4 @@
+const btn = document.querySelector("#btn")
 const item = window.localStorage.getItem("boards")
 const boards = JSON.parse(item)
 
@@ -12,3 +13,7 @@ for (let i = 0; i < viewfrm.length; i++) {
     const span = viewfrm[i].querySelector("span")
     span.innerHTML = board[id]
 }
+
+btn.addEventListener("click", function () {
+    location.href = `/board/modify.html?index=${index}`
+})
