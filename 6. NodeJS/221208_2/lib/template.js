@@ -4,11 +4,11 @@ const path = require("path")
 const defaultDir = "views"
 const targetDir = "./"
 
-module.exports = (filename, obj) => {
+module.exports = (filename, obj, defaultDir='views') => {
     const target = path.join(targetDir, defaultDir, filename)
     const readline = fs.readFileSync(target, "utf8").split("\n")
     for (const i in readline) {
-        // console.log("read", i, ":", readline[i])
+        console.log("read", i, ":", readline[i])
         const start = readline[i].indexOf("{{")
         const end = readline[i].indexOf("}}")
         if (start > 0 && end > 0) {

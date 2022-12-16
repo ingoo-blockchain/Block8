@@ -11,10 +11,12 @@ const incodeMesage = (obj) => {
 }
 
 const decodeMessage = (message) => {
-    message = message.replaceAll(" ", "")
+
     const arr = message.split("\r\n").filter((v) => v !== "")
 
-    const body = arr.pop()
+    let body = ""
+    let line = false
+
     const [method, url, version] = arr.shift().split(" ")
     const [path, queryString] = url.split("?")
     const query = queryString
