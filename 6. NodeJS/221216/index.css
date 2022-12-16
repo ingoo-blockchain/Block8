@@ -1,95 +1,97 @@
 * {
     margin: 0;
-    padding : 0;
+    padding: 0;
 }
 
-ul,li {
+ul,
+li {
     list-style: none;
-    display:inline-block;
+    display: inline-block;
 }
 
 a {
     text-decoration: none;
-    color:#333;
-    display:block;
+    color: #333;
+    display: block;
 }
 
 H1 {
-    text-align:center;
+    text-align: center;
 }
-#submit {
-    display:block;
-    margin : 0 auto;
-}
-
 
 #backarea {
-    width:600px;
-    height:100px;
-    margin:0 auto;
+    width: 600px;
+    height: 100px;
+    padding: 50px 0;
+    margin: 0 auto;
 }
 
-#lottonum {
-    width:200px;
-    height:100px;
-    margin : 0 auto;
-    display:flex;
+#backarea + button {
+    display: block;
+    margin: 0 auto;
+}
+
+#backarea > ul {
+    width: 200px;
+    height: 100px;
+    margin: 0 auto;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display:none;
+    display: none;
 }
 
-#lottonum > li {
-    width:60px;
-    height:40px;
+#backarea > ul > li {
+    width: 60px;
+    height: 40px;
     border-radius: 30px;
     text-align: center;
-    margin : 30px;
-    font-size:40px;
+    margin: 30px;
+    font-size: 40px;
 }
 
 #info {
-    width:600px;
-    height:50px;
-    margin:30px auto;
+    width: 600px;
+    height: 50px;
+    margin: 30px auto;
     text-align: center;
     box-sizing: border-box;
-    display:none;
+    display: none;
 }
 
 #payinfo {
-    width:600px;
-    height:150px;
-    margin:0 auto;
+    width: 600px;
+    height: 150px;
+    margin: 0 auto;
     text-align: center;
-    display:none;
-    padding : 25px 0 25px 0;
+    display: none;
+    padding: 25px 0 25px 0;
     box-sizing: border-box;
-    display:none;
+    display: none;
 }
 
 #payinfo > div > span {
-    display:block;
-    width:100%;
+    display: block;
+    width: 100%;
     height: 20px;
 }
 
 .a {
-    background : red;
+    background: red;
 }
 
 .b {
-    background : orange;
+    background: orange;
 }
 
 .c {
-    background : yellow;
+    background: yellow;
 }
 
 .d {
-    background : green;
+    background: green;
 }
 
 .e {
-    background : blue;
+    background: blue;
 }
