@@ -1,4 +1,7 @@
 class Lotto {
+    lotto
+    className
+
     constructor({ totalNumber, count }) {
         this.lotto = this.randomLotto(count, totalNumber)
         this.className = this.getClassName(this.lotto)

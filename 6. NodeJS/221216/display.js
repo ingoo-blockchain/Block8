@@ -4,7 +4,10 @@ const Payinfo = document.querySelector("#payinfo")
 const Info = document.querySelector("#info")
 
 class Display {
-    btn
+    display
+    box
+    payinfo
+    info
     constructor({ display, box, payinfo, info }) {
         this.display = document.querySelector(display)
         this.box = document.querySelectorAll(box)
