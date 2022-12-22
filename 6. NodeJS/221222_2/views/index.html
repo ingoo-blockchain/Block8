@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        {% if AccessToken %} {{AccessToken}} 님 환영합니다.
+        <a href="/user/logout">로그아웃</a>
+        {% else %}
+        <a href="/user/login">로그인</a>
+        {% endif %}
+        <br />
+        <a href="/board/list">게시판 바로가기</a>
+        <a href="/user/signup">회원가입</a>
+    </body>
+</html>
