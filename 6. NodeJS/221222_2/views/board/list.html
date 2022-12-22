@@ -7,6 +7,23 @@
         <title>Document</title>
     </head>
     <body>
-        게시판 리스트
+        <table>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>조회수</th>
+            </tr>
+            {% for item in list %}
+            <tr>
+                <td>{{item.idx}}</td>
+                <td>{{item.subject}}</td>
+                <td>{{item.writer}}</td>
+                <td>{{item.registerDate}}</td>
+                <td>{{item.hit}}</td>
+            </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>
