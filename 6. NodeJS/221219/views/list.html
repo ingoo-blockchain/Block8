@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>게시판 리스트 입니다.</h1>
+        <table>
+            <tr>
+                <td>번호</td>
+                <td>제목</td>
+                <td>작성자</td>
+                <td>작성일</td>
+                <td>조회수</td>
+            </tr>
+            {% for item in list %}
+            <tr>
+                <td>{{loop.index-1}}</td>
+                <td><a href="/view?index={{loop.index-1}}">{{item.subject}}</a></td>
+                <td>3</td>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="/write">글작성</a>
+    </body>
+</html>

@@ -193,12 +193,33 @@ const add20 = $ => $ + 10
 add20(a)
 
 const f1 = () => () => 1
+const f1 = (count=0) => [()=>++count,()=>--count]
 
-const f1 = () => {
-    let count = 0
-    return () => [()=>++count,()=>--count]
+
+// 함수는 값 Javascript 
+
+/*
+function inner() {
+	let count = 0
+  
+    return function (){
+        count++
+        return count // 4
+    }
 }
+*/
+
+const make = (count) => () => ++count
+
 
 
 ```
+
+
+
+
+
+
+
+
 
