@@ -1,0 +1,27 @@
+{
+    "dependencies": {
+        "body-parser": "^1.20.1",
+        "crypto-js": "^4.1.1",
+        "express": "^4.18.2",
+        "mysql2": "^2.3.3",
+        "sequelize": "^6.28.0",
+        "sequelize-cli": "^6.5.2"
+    },
+    "devDependencies": {
+        "jest": "^29.3.1",
+        "node-mocks-http": "^1.12.1",
+        "supertest": "^6.3.3"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "test:unit": "jest --detectOpenHandles \"unit/.*\\.test\\.js\"",
+        "test:inter": "jest --detectOpenHandles \"intergation/.*\\.test\\.js\"",
+        "coverage": "jest --coverage"
+    },
+    "name": "back",
+    "version": "1.0.0",
+    "main": "app.js",
+    "author": "",
+    "license": "ISC",
+    "description": ""
+}
