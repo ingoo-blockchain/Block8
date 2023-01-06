@@ -51,15 +51,72 @@ const submitHandler = async (e) => {
     content.focus()
 }
 
-const events = ({ submitHandler }) => {
+const changeBtn = (contentEle, before) => {
+    const enterHandler = (e) => {
+        if (e.keyCode !== 13) return
+        try {
+            if (e.target.value === "") throw new Error("인간적으로 빈칸은 하지말자~")
+            if (e.target.value === before) return
+
+            // requeset.update() id
+            // result : 1
+
+            contentEle.innerHTML = ""
+            const basicEle = basic(e.target.value)
+            contentEle.append(basicEle)
+        } catch (e) {
+            alert(e.message)
+        }
+    }
+    // before : 잘된다!
+    // 화면을 바꿔주기.
+    contentEle.innerHTML = ""
+    const clone = template.update()
+    const input = clone.querySelector("span > input")
+    input.value = before
+
+    input.addEventListener("keyup", enterHandler)
+    contentEle.append(clone)
+    // enter 되돌리기
+}
+
+const deleteBtn = (ulElement) => {
+    try {
+        if (!confirm("삭제할랭?")) return
+        // 요청 코드 request.delete(id)
+        // result:1
+        ulElement.remove()
+    } catch (e) {
+        alert(e.message)
+    }
+}
+
+const clickHandler = (e) => {
+    const contentElement = e.target.parentNode
+    const ulElement = contentElement.parentNode
+    const { index: id } = ulElement.dataset
+
+    switch (e.target.className) {
+        case "comment-update-btn":
+            changeBtn(contentElement, e.target.innerHTML)
+            break
+        case "comment-delete-btn":
+            deleteBtn(ulElement)
+            break
+    }
+}
+
+const events = ({ submitHandler, clickHandler }) => {
     const form = document.querySelector("#commentFrm")
-    // const list = document.querySelector("#comment-list")
+    const list = document.querySelector("#comment-list")
     form.addEventListener("submit", submitHandler)
+    list.addEventListener("click", clickHandler)
 }
 
 ;(async () => {
     init()
     events({
         submitHandler,
+        clickHandler,
     })
 })()
