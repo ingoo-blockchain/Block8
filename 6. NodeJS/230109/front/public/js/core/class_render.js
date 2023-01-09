@@ -56,7 +56,4 @@ class App extends Component {
     }
 }
 
-const a = new App(document.querySelector("#app"))
-console.dir(a)
-
-export default ""
+export default App
