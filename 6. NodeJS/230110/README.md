@@ -58,3 +58,15 @@ ORM <--
 
 
 model...
+
+
+ORM -> Sequelize 
+
+model을 생성해서 (객체만들어서)
+`Table` 생성
+
+controller `postSignup`
+service `signup`
+repository `addUser`
+
+``
