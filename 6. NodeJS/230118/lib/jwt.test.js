@@ -13,6 +13,6 @@ describe("lib/JWT.js", () => {
         expect(typeof jwt.encode).toBe("function")
         const value = { foo: "bar" }
         const base64 = jwt.encode(value)
-        expect(base64).toBe("~~~~~")
+        expect(base64).toBe("eyJmb28iOiJiYXIifQ")
     })
 })

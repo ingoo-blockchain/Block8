@@ -3,7 +3,9 @@ class JWT {
         this.crypto = crypto
     }
 
-    encode() {}
+    encode(obj) {
+        return Buffer.from(JSON.stringify(obj)).toString("base64").replace(/[=]/g, "")
+    }
 }
 
 module.exports = JWT

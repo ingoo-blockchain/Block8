@@ -4,7 +4,7 @@
     "description": "```sh\r npm install express mysql2 sequelize dotenv\r ```",
     "main": "index.js",
     "scripts": {
-        "test": "jest"
+        "test": "jest -c jest.config.unit.js"
     },
     "keywords": [],
     "author": "",
