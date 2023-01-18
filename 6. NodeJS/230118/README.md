@@ -18,3 +18,7 @@ npm install express mysql2 sequelize dotenv
 models
 
 ## TDD
+
+```sh
+npm install -D jest node-mocks-http supertest
+```
