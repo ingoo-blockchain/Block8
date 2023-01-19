@@ -7,6 +7,7 @@ class AuthRepository {
         try {
             const user = await this.User.findOne({
                 raw: true,
+                attributes: { exclude: ["userpw"] },
                 where: {
                     userid,
                     userpw,
@@ -18,3 +19,5 @@ class AuthRepository {
         }
     }
 }
+
+module.exports = AuthRepository

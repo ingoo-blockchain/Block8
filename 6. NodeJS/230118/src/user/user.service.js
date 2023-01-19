@@ -15,6 +15,16 @@ class UserService {
             throw new Error(e)
         }
     }
+
+    async me(token) {
+        try {
+            const { userid } = this.jwt.verify(token, "web7722")
+            const user = await this.userRepository.getUserById(userid)
+            return user
+        } catch (e) {
+            throw new Error(e)
+        }
+    }
 }
 
 module.exports = UserService
