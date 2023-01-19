@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body></body>
-</html>
+{% extends 'layout/layout.html' %} {% block content %}
+
+<ul>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Board</a></li>
+    {% if userid %}
+    <li>
+        {{username}} 님 환영합니다. <br />
+        <button id="logout">logout</button>
+        <script type="text/javascript">
+            const logout = document.querySelector("#logout")
+            logout.addEventListener("click", (e) => {
+                e.preventDefault()
+                console.log("asdfasdf")
+                document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:01 GMT;"
+                location.href = "/"
+            })
+        </script>
+    </li>
+    {% else %}
+    <li>
+        <a href="/signin">Sign in</a>
+        <a href="/kakao/login">카카오 로그인</a>
+    </li>
+    {% endif %}
+    <li><a href="/signup">Sign up</a></li>
+</ul>
+
+<div>메인페이지</div>
+
+{% endblock %}
