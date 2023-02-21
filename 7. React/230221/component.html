@@ -1,0 +1,56 @@
+<script type="text/javascript">
+    class Component {
+        props // 앞으로 넣을 Element
+        state // 데이터들
+
+        constructor(_props) {
+            this.props = _props
+            this.setup()
+            // this.template()
+        }
+
+        setup() {} // 자식클래스에서 구현
+        render() {} // 자식클래스에서 구현
+        template() {
+            this.props.innerHTML = this.render()
+        }
+        setState(newState) {
+            if (this.state === newState) return
+            this.state = { ...this.state, ...newState }
+            this.template()
+        }
+    }
+
+    class LoginBtn extends Component {
+        constructor(props) {
+            super(props)
+            this.state = { isLogin: false }
+        }
+
+        render() {
+            return `<button>
+                ${this.state.isLogin ? "logout" : "login"}
+            </button>`
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    class VirtualDOM {
+        constructor(component, target) {
+            this.Component = new component(target)
+        }
+
+        render() {
+            this.Component.template()
+        }
+    }
+</script>
+
+<div id="root"></div>
+<script type="text/javascript">
+    // new LoginBtn(document.querySelector("#root"))
+
+    const root = new VirtualDOM(LoginBtn, document.querySelector("#root"))
+    root.render()
+</script>

@@ -1,0 +1,12 @@
+{% extends 'layout/layout.html' %} {% block content %}
+
+<h2>로그인</h2>
+
+<form name="loginfrm" id="loginfrm">
+    <input type="text" name="userid" placeholder="아이디 입력해주셈" />
+    <input type="password" name="userpw" placeholder="패스워드 입력해주셈" />
+    <button type="submit">로그인</button>
+</form>
+
+<script type="module" src="/js/module/login.js"></script>
+{% endblock %}

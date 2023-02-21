@@ -1,0 +1,63 @@
+<div id="root"></div>
+<script type="text/javascript">
+    class Component {
+        props
+        state
+
+        constructor(_props) {
+            this.props = _props
+        }
+
+        componentDidMount() {}
+        componentDidUpdate() {}
+
+        render() {}
+        template() {
+            this.componentDidMount()
+            this.props.innerHTML = this.render()
+        }
+
+        setState(newState) {
+            if (this.state === newState) return
+            this.state = { ...this.state, ...newState }
+            this.render()
+            this.componentDidUpdate()
+        }
+    }
+
+    class LoginBtn extends Component {
+        constructor(props) {
+            super(props)
+            this.state = {
+                isLogin: false,
+            }
+        }
+
+        componentDidMount() {
+            console.log("나는 최초에 Render가 되었다~")
+            this.setState({ isLogin: true })
+        }
+
+        componentDidUpdate() {
+            console.log("나는 상태가 바뀌었다~")
+        }
+
+        render() {
+            return `<button>${this.state.isLogin ? "logout" : "login"}</button>`
+        }
+    }
+
+    class VirtualDOM {
+        static createRoot(Props) {
+            return {
+                props: Props,
+                render(Component) {
+                    new Component(this.props).template()
+                },
+            }
+        }
+    }
+
+    const root = VirtualDOM.createRoot(document.querySelector("#root"))
+    root.render(LoginBtn)
+</script>

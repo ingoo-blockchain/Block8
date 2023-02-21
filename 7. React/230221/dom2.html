@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/javascript">
+            const Clock = () => {
+                const div = document.createElement("div")
+                const h1 = document.createElement("h1")
+                const h2 = document.createElement("h2")
+
+                const txt = "hello world!"
+                let time = `It is ${new Date().toLocaleTimeString()}`
+
+                h1.innerHTML = txt
+                h2.innerHTML = time
+
+                div.append(h1)
+                div.append(h2)
+
+                document.querySelector("#root").innerHTML = div.innerHTML
+            }
+
+            setInterval(Clock, 1000)
+        </script>
+    </body>
+</html>
+
+<!-- 
+    시계 
+    1초마다 1초씩 시간을 표현하는 코드를 
+    DOM 코드로 작성할거임.
+ -->
