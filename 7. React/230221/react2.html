@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+
+        <script type="text/babel">
+            class Clock extends React.Component {
+                constructor(props) {
+                    super(props)
+                    this.state = {
+                        currentTime: new Date().toLocaleTimeString(),
+                    }
+                }
+
+                // 컴포넌트 최초에 실행됬을때 실행하는 코드영역
+                componentDidMount() {
+                    setInterval(() => {
+                        this.setState({ currentTime: new Date().toLocaleTimeString() })
+                    }, 1000)
+                }
+
+                render() {
+                    return (
+                        <div>
+                            <h1>Hello world!</h1>
+                            <h2>It is {this.state.currentTime}</h2>
+                        </div>
+                    )
+                }
+            }
+
+            const root = ReactDOM.createRoot(document.querySelector("#root"))
+            root.render(<Clock />)
+        </script>
+    </body>
+</html>

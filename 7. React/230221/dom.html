@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/javascript">
+            const root = document.querySelector("#root")
+
+            const button = document.createElement("button")
+            button.addEventListener("click", (e) => {
+                if (e.target.innerHTML === "Login") {
+                    e.target.innerHTML = "logout"
+                } else {
+                    e.target.innerHTML = "Login"
+                }
+            })
+            button.innerHTML = `
+                <div></div>
+            `
+
+            root.append(button)
+        </script>
+    </body>
+</html>
