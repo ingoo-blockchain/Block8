@@ -11,10 +11,13 @@
         componentDidMount() {}
         componentDidUpdate() {}
 
+        addEvent(type, selector, callback){
+            const children = []
+        }
         render() {}
         template() {
             this.componentDidMount()
-            this.props.innerHTML = this.render()
+            this.props.children.innerHTML = this.render()
         }
 
         setState(newState) {
@@ -51,13 +54,30 @@
         static createRoot(Props) {
             return {
                 props: Props,
-                render(Component) {
-                    new Component(this.props).template()
+                render(Element) {
+                    console.log(Element)
+                    Element.props.children = Props
+                    Element.template()
                 },
             }
         }
     }
 
+    class Inact {
+        static createElement(element, property = {}, children = undefined) {
+            const instance = new element({
+                children,
+                ...property,
+            })
+
+            return instance
+        }
+
+        static Component(...args) {
+            return new Component(args)
+        }
+    }
+
     const root = VirtualDOM.createRoot(document.querySelector("#root"))
-    root.render(LoginBtn)
+    root.render(Inact.createElement(LoginBtn, { onClick: () => this.setState({ isLogin: !this.state.isLogin }) }))
 </script>

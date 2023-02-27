@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            body {
+                font: 14px "Century Gothic", Futura, sans-serif;
+                margin: 20px;
+            }
+
+            ol,
+            ul {
+                padding-left: 30px;
+            }
+
+            .board-row:after {
+                clear: both;
+                content: "";
+                display: table;
+            }
+
+            .status {
+                margin-bottom: 10px;
+            }
+
+            .square {
+                background: #fff;
+                border: 1px solid #999;
+                float: left;
+                font-size: 24px;
+                font-weight: bold;
+                line-height: 34px;
+                height: 34px;
+                margin-right: -1px;
+                margin-top: -1px;
+                padding: 0;
+                text-align: center;
+                width: 34px;
+            }
+
+            .square:focus {
+                outline: none;
+            }
+
+            .kbd-navigation .square:focus {
+                background: #ddd;
+            }
+
+            .game {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .game-info {
+                margin-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+    </body>
+        <div id="root">
+            <div>
+                <div className='game'>
+                    <div className='game-board'>
+                    </div>
+                </div>
+                <div className='game-info'>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/babel">
+            const calculateWinner = (squares) => {
+                // ['X','X','X',null,'x',null,null,null,null]
+                const line = [
+                    [0,1,2], // 1,2,3
+                    [3,4,5],
+                    [6,7,8],
+                    [1,4,7],
+                    [2,5,8],
+                    [0,3,6],
+                    [0,4,8],
+                    [2,4,6]
+                ]
+
+                for (const  v of line) {
+                    const [a,b,c] = v
+                    if (squares[a] && squares[a] === squares[b] && sqaurea[a] === squares[c]) {
+                        return squarea[a]
+                    }
+                }
+
+                return null
+            }
+
+            class Square extends React.Component {
+
+                render(){
+                    return <button onClick={this.props.onClick}>{this.props.value}</button>
+                }
+            }
+
+            class Board extends React.Component {
+                
+                state = {
+                    squares:new Array(9).fill(null), // [null,null,'x',null,'x',null,null,null,null]
+                    xIsNext: true
+                }
+                
+                renderSquare(i) {
+                    return <Square value={this.state.squares[i]} onClick={()=>this.handleClick(i)}/>
+                }
+
+                handleClick(i){
+
+
+                    const {squares} = {...this.state}
+                    squares[i] = this.state.xIsNext ? 'X' : 'O'
+                    // 이겻냐 졋냐 
+                    this.setState({ squares,xIsNext:!this.state.xIsNext })
+                }
+
+                render() {
+                    return (
+                        <div>
+                            <div className='board-row'>
+                                {this.renderSquare(0)}
+                                {this.renderSquare(1)}
+                                {this.renderSquare(2)}
+                            </div>
+                            <div className='board-row'>
+                                {this.renderSquare(3)}
+                                {this.renderSquare(4)}
+                                {this.renderSquare(5)}
+                            </div>
+                            <div className='board-row'>
+                                {this.renderSquare(6)}
+                                {this.renderSquare(7)}
+                                {this.renderSquare(8)}
+                            </div>
+                        </div>
+                    )
+                }
+            }
+
+            class Game extends React.Component {
+                render(){
+                    return (
+                        <div>
+                            <div className='game'>
+                                <div className='game-board'>
+                                    <Board />
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+            }
+
+            class App extends React.Component {
+                render() {
+                    return <Game />
+                }
+            }
+
+            const root = ReactDOM.createRoot(document.querySelector('#root'))
+            root.render(<App />)
+        </script>
+    </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            body {
+                font: 14px "Century Gothic", Futura, sans-serif;
+                margin: 20px;
+            }
+
+            ol,
+            ul {
+                padding-left: 30px;
+            }
+
+            .board-row:after {
+                clear: both;
+                content: "";
+                display: table;
+            }
+
+            .status {
+                margin-bottom: 10px;
+            }
+
+            .square {
+                background: #fff;
+                border: 1px solid #999;
+                float: left;
+                font-size: 24px;
+                font-weight: bold;
+                line-height: 34px;
+                height: 34px;
+                margin-right: -1px;
+                margin-top: -1px;
+                padding: 0;
+                text-align: center;
+                width: 34px;
+            }
+
+            .square:focus {
+                outline: none;
+            }
+
+            .kbd-navigation .square:focus {
+                background: #ddd;
+            }
+
+            .game {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .game-info {
+                margin-left: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            const calculateWinner = (squares) => {
+                const line = [
+                    [0, 1, 2], // 123
+                    [3, 4, 5], // 456
+                    [6, 7, 8], // 789
+                    [1, 4, 7], // 147
+                    [2, 5, 8], // 258
+                    [0, 3, 6], // 369
+                    [0, 4, 8], // 159
+                    [2, 4, 6], // 357
+                ]
+
+                for (const v of line) {
+                    const [a, b, c] = v
+                    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
+                        return squares[a]
+                    }
+                }
+
+                return null
+            }
+
+            const Square = ({ onClick, value }) => {
+                console.log(value)
+                return (
+                    <button className="square" onClick={onClick}>
+                        {value}
+                    </button>
+                )
+            }
+
+            class Board extends React.Component {
+                renderSquare(i) {
+                    console.log(this.props.squares[i])
+                    return <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />
+                }
+
+                render() {
+                    return (
+                        <div>
+                            <div className="board-row">
+                                {this.renderSquare(0)}
+                                {this.renderSquare(1)}
+                                {this.renderSquare(2)}
+                            </div>
+                            <div className="board-row">
+                                {this.renderSquare(3)}
+                                {this.renderSquare(4)}
+                                {this.renderSquare(5)}
+                            </div>
+                            <div className="board-row">
+                                {this.renderSquare(6)}
+                                {this.renderSquare(7)}
+                                {this.renderSquare(8)}
+                            </div>
+                        </div>
+                    )
+                }
+            }
+
+            class GameInfo extends React.Component {
+                render() {
+                    return (
+                        <div className="game-info">
+                            <div>{this.props.status}</div>
+                            <div>{this.props.moves}</div>
+                        </div>
+                    )
+                }
+            }
+
+            class Game extends React.Component {
+                state = {
+                    history: [
+                        {
+                            squares: new Array(9).fill(null),
+                        },
+                    ],
+                    xIsNext: true,
+                    stepNumber: 0,
+                }
+
+                handleClick(i) {
+                    const { history } = { ...this.state }
+                    const current = history[history.length - 1]
+                    const squares = { ...current.squares }
+                    if (calculateWinner(squares) || squares[i]) return
+
+                    squares[i] = this.state.xIsNext ? "X" : "O"
+
+                    this.setState({
+                        history: [...history, { squares: { ...squares } }],
+                        xIsNext: !this.state.xIsNext,
+                        stepNumber: history.length,
+                    })
+                }
+
+                jumpTo(step) {
+                    this.setState({
+                        stepNumber: step,
+                        xIsNext: step % 2 === 0,
+                    })
+                }
+
+                getCurrentSquares() {
+                    const { history } = { ...this.state }
+                    const current = history[this.state.stepNumber]
+                    return current
+                }
+
+                getWinner() {
+                    const current = this.getCurrentSquares()
+                    console.log(`current : ${current}`)
+                    return calculateWinner(current.squares)
+                }
+
+                getStatus() {
+                    const winner = this.getWinner()
+                    return winner ? `Winner: ${winner}` : `Next Player : ${this.state.xIsNext ? "X" : "O"}`
+                }
+
+                moves() {
+                    const callback = (step, move) => (
+                        <li key={move}>
+                            <button onClick={() => this.jumpTo(move)}>{move ? `Go to move #${move}` : `Go to game start`}</button>
+                        </li>
+                    )
+
+                    return this.state.history.map(callback)
+                }
+
+                render() {
+                    return (
+                        <div className="game">
+                            <div className="game-board">
+                                <Board squares={this.getCurrentSquares()} onClick={(i) => this.handleClick(i)} />
+                            </div>
+                            <GameInfo status={this.getStatus()} moves={this.moves()} />
+                        </div>
+                    )
+                }
+            }
+
+            class App extends React.Component {
+                render() {
+                    return <Game />
+                }
+            }
+
+            const root = ReactDOM.createRoot(document.querySelector("#root"))
+            root.render(<App />)
+        </script>
+    </body>
+</html>
