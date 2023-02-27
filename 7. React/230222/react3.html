@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class Word extends React.Component {
+                constructor(props) {
+                    super(props)
+                }
+
+                render() {
+                    return <h2>{this.props.text}</h2>
+                }
+            }
+
+            class LoginText extends React.Component {
+                constructor(props) {
+                    super(props)
+                }
+
+                // {this.state.isLogin ? "로그아웃" : "로그인"}
+                render() {
+                    return this.props.flag ? <Word text="로그아웃" /> : <Word text="로그인" />
+                }
+            }
+
+            class LoginBtn extends React.Component {
+                constructor(props) {
+                    super(props)
+                    this.state = {
+                        isLogin: false,
+                    }
+                    this.handleClick = this.handleClick.bind(this)
+                }
+
+                handleClick() {
+                    this.setState({ isLogin: !this.state.isLogin })
+                }
+
+                render() {
+                    return (
+                        <button onClick={this.handleClick}>
+                            <LoginText flag={this.state.isLogin} />
+                        </button>
+                    )
+                }
+            }
+
+            class App extends React.Component {
+                constructor(props) {
+                    super(props)
+
+                    this.state = {
+                        isLogin: false,
+                    }
+                }
+
+                render() {
+                    return (
+                        <div>
+                            <Word text="Hello World1" />
+                            <LoginBtn />
+                        </div>
+                    )
+                }
+            }
+            const root = ReactDOM.createRoot(document.querySelector("#root"))
+            root.render(<App />)
+        </script>
+    </body>
+</html>

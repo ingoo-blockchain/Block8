@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <link rel="stylesheet" href="./comment.css" />
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            class CommentItem extends React.Component {
+                render() {
+                    return (
+                        <ul className="comment-row">
+                            <li className="comment-id">{this.props.userid}</li>
+                            <li className="comment-content">{this.props.content}</li>
+                            <li className="comment-date">{this.props.date}</li>
+                        </ul>
+                    )
+                }
+            }
+
+            class CommentForm extends React.Component {
+                constructor(props) {
+                    super(props)
+                    this.submitHandler = this.submitHandler.bind(this)
+                    this.changeHandler = this.changeHandler.bind(this)
+                    this.state = {
+                        value: "",
+                    }
+                }
+
+                changeHandler(e) {
+                    const { value } = e.target
+
+                    this.setState({
+                        ...this.state,
+                        value,
+                    })
+                }
+
+                submitHandler(e) {
+                    e.preventDefault()
+                    this.props.create(this.state.value)
+                    this.setState({ value: "" })
+                }
+
+                render() {
+                    return (
+                        <li className="comment-form">
+                            <form onSubmit={this.submitHandler}>
+                                <h4>
+                                    댓글쓰기 <span>({this.props.length})</span>
+                                </h4>
+                                <span className="ps_box">
+                                    <input type="text" onChange={this.changeHandler} className="int" value={this.state.value} placeholder="댓글내용을 입력해주세요." />
+                                </span>
+                                <input type="submit" value="등록" className="btn" />
+                            </form>
+                        </li>
+                    )
+                }
+            }
+
+            class CommentList extends React.Component {
+                // this.props.items -> Array
+
+                loop(v, k) {
+                    return <CommentItem key={k} userid="web7722" content={v.content} date="2023-02-22" />
+                }
+
+                render() {
+                    return <li>{this.props.items.map(this.loop)}</li>
+                }
+            }
+
+            class Comment extends React.Component {
+                constructor(props) {
+                    super(props)
+                    this.state = {
+                        comment: [
+                            {
+                                userid: "web7722",
+                                content: "안녕하세요 댓글1",
+                                date: "2023-02-22",
+                            },
+                            {
+                                userid: "web7722",
+                                content: "안녕하세요 댓글2",
+                                date: "2023-02-22",
+                            },
+                            {
+                                userid: "web7722",
+                                content: "안녕하세요 댓글",
+                                date: "2023-02-22",
+                            },
+                        ],
+                    }
+
+                    this.create = this.create.bind(this)
+                }
+
+                create(content) {
+                    this.setState({ comment: [{ userid: "web7722", content, date: "2023-02-22" }, ...this.state.comment] })
+                }
+
+                render() {
+                    return (
+                        <ul className="comment">
+                            <CommentForm create={this.create} length={this.state.comment.length} />
+                            <CommentList items={this.state.comment} />
+                        </ul>
+                    )
+                }
+            }
+
+            class App extends React.Component {
+                render() {
+                    return (
+                        <div>
+                            <Comment />
+                            <Comment />
+                            <Comment />
+                        </div>
+                    )
+                }
+            }
+
+            const root = ReactDOM.createRoot(document.querySelector("#root"))
+            root.render(<App />)
+        </script>
+    </body>
+</html>
