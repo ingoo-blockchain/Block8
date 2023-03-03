@@ -275,3 +275,148 @@ npm run dev
 ```
 
 `http://localhost:3000` 접속해보기
+
+### styled-components 사용해보기
+
+**directory**
+
+```sh
+| -- /src
+| ---- /components
+| ------ Button.jsx
+| ---- /pages
+| ------ /board
+| --------- write.jsx
+| ------ main.jsx
+| ---- index.jsx
+| ---- app.jsx
+```
+
+`App` 컴포넌트에서 `main` 컴포넌트를 불러와 봅니다.
+`class` 컴포넌트를 배웠을때
+
+`props`
+
+JSX, React.CreateElement 매서드를 사용했었을때
+
+**JSX**
+
+```jsx
+<App></App>
+<App />
+```
+
+**React.CreatElement**
+
+```jsx
+React.createElement(App)
+```
+
+아이디가 1이다 라는 속성을 넣고싶을떄는
+
+```jsx
+// JSX
+;<App id="1" />
+
+// React.createElement
+React.createElement(App, { id: "1" })
+```
+
+```jsx
+// React.createElement
+React.createElement(App, { id: "1" }, "Hello World")
+
+// JSX
+<App id="1">Hello World</App>
+```
+
+```jsx
+// children
+const App = (props) => {
+    // props   {id:"1", children:'Hello World'}
+    console.log(props.children)
+    console.log(props.id)
+
+    const { children, id } = props
+    console.log(children, id)
+}
+```
+
+### main.jsx 구현
+
+```jsx
+import React from "react"
+
+const Main = () => {
+    return (
+        <>
+            <h1>Logo</h1>
+
+            <ul>
+                <li>Hello world</li>
+                <li>버튼 영역</li>
+                <li></li>
+                <li></li>
+            </ul>
+        </>
+    )
+}
+
+export default Main
+```
+
+이후 app.jsx 수정
+**app.jsx**
+
+```jsx
+import React from "react"
+import Main from "./pages/main"
+
+const App = () => {
+    return (
+        <>
+            <Main />
+        </>
+    )
+}
+
+export default App
+```
+
+### button.jsx 추가
+
+```jsx
+import React from "react"
+
+const StyledButton = () => {
+    return <button>버튼</button>
+}
+
+export default StyledButton
+```
+
+**pages/main.jsx**
+
+```jsx
+import React from "react"
+import Button from "../components/button"
+
+const Main = () => {
+    return (
+        <>
+            <h1>Logo</h1>
+
+            <ul>
+                <li>Hello world</li>
+                <li>
+                    <Button />
+                </li>
+                <li></li>
+                <li></li>
+            </ul>
+        </>
+    )
+}
+
+export default Main
+```
