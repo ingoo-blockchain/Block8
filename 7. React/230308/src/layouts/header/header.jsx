@@ -3,7 +3,7 @@ import { Navigation } from "../navigation"
 import { useStore } from "../../store"
 
 export const Header = () => {
-    const [state] = useStore()
+    const { state } = useStore()
 
     const category = [
         { path: "/", name: "Home" },

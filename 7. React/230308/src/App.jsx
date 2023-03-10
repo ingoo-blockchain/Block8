@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { Header } from "./layouts/header"
-import { Main, Login, BoardList, BoardWrite, BoardModify, BoardView } from "./pages"
+import { Main, Login, Logout, BoardList, BoardWrite, BoardModify, BoardView } from "./pages"
 import { StoreProvider } from "./store"
 
 const App = () => {
@@ -13,6 +13,7 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Main />} />
                     <Route path="/login" element={<Login />} />
+                    <Route path="/logout" element={<Logout />} />
                     <Route path="/board/*">
                         <Route path="list" element={<BoardList />} />
                         <Route path="write" element={<BoardWrite />} />

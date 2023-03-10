@@ -2,7 +2,7 @@ import { useStore } from "../store"
 import { useNavigate } from "react-router-dom"
 
 export const Login = () => {
-    const [state, dispatch] = useStore()
+    const { state, dispatch } = useStore()
     const navigate = useNavigate()
 
     const handleClick = () => {
