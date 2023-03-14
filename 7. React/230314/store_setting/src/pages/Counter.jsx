@@ -1,15 +1,17 @@
-import { useState } from "react"
+import { useSelector, useDispatch } from 'react-redux'
 
 export const Counter = () => {
-    const [count, setCount] = useState(0)
+    const dispatch = useDispatch()
+    const {count} = useSelector((state)=>state.counter)
 
     const increment = () => {
-        setCount(count + 1)
-    }
-    const decrement = () => {
-        setCount(count - 1)
+        dispatch({type:'increment'}) 
     }
 
+    const decrement = () => {
+        dispatch({type:'decrement'}) 
+    }
+   
     return (
         <>
             <h2>Counter : {count}</h2>
