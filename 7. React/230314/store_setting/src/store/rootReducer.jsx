@@ -1,18 +1,9 @@
-const intialState = {
-    counter: {
-        count:5
-    }
-}
+import { combineReducers } from 'redux'
+import { counter } from './counter/reducer'
 
-const rootReducer = (state, action) => {
-    switch(action.type) {
-        case "increment":
-            return { ...state,counter:{count: state.counter.count+1} }
-        case "decrement":
-            return { ...state,counter:{count: state.counter.count-1} }
-        default:
-            return intialState
-    }
-}
+
+const rootReducer = combineReducers({
+    counter
+})
 
 export default rootReducer

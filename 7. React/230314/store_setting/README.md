@@ -12,3 +12,22 @@ react-redux : react에서 redux를 사용할수있게 도와주는 라이브러�
 const store = createStore(rootReducer)
 console.log(store)
 ```
+
+
+```js
+const state = {
+    board:[
+        {}
+    ],
+    user: {
+
+    },
+    counter:{
+        count:0
+    },
+    commnets:[
+        
+    ]
+
+}
+```
