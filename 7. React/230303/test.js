@@ -11,3 +11,6 @@ function a(obj) {
 
 const { name, ...rest } = person
 a({ ...rest, a: 10 }) // {age,key,weight,a:10}
+
+
+//
