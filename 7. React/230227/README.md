@@ -11,3 +11,12 @@ tool
 
 
 
+
+
+package.json 
+
+scripts:{
+    ...
+
+    eject:
+}

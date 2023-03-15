@@ -19,8 +19,6 @@ const createThunkMiddleware = (arguments) => {
 const store = createStore(rootReducer, applyMiddleware(createThunkMiddleware()))
 
 const api = () => {
-    // axios..
-    //
     store.dispatch({ type: "increment" })
 }
 

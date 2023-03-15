@@ -20,6 +20,6 @@ counter 호출
 -   counter component 출력
 ```
 
-```js
+```sh
 npm install react-router-dom
 ```
