@@ -1,0 +1,16 @@
+{
+    "name": "3.tsconfig",
+    "version": "1.0.0",
+    "description": "```json\r {\r     \"compileOptions\": {},\r     \"include\": [\"./\"],\r     \"exclude\": []\r }\r ```",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc && tsc-alias"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "tsc-alias": "^1.8.5",
+        "typescript": "^5.0.4"
+    }
+}

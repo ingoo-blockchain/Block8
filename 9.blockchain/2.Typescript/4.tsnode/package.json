@@ -1,0 +1,19 @@
+{
+    "name": "4.tsnode",
+    "version": "1.0.0",
+    "description": "ts-node는 우리가 Typescript 를 코드로 작성하면, 확인하고싶을떄마다,\r 빌드하고 확인하고.. (개발단계)",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^2.0.22",
+        "ts-node": "^10.9.1",
+        "tsc-alias": "^1.8.5",
+        "tsconfig-paths": "^4.2.0",
+        "typescript": "^5.0.4"
+    }
+}
