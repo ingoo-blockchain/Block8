@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "module": "CommonJS",
+        "outDir": "./dist",
+        "target": "ES6",
+        "esModuleInterop": true,
+        "declaration": true,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "sourceMap": true,
+        "strict": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@constants/*": ["constants/*"],
+            "@core/*": ["core/*"]
+        }
+    },
+    "include": ["src/**/*", "__tests__"],
+    "exclude": ["node_modules", "dist"]
+}
