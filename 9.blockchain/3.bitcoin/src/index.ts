@@ -15,7 +15,3 @@ const block = new Block(crypto, workProof)
 
 const block1 = block.createBlock(GENESIS, "asdfasdf", GENESIS)
 console.log(block1)
-
-// 반복문을 통해서 블럭을 100개를 만들어주시구요, 100개를 배열에다가 담아주세요.
-// POW가 정확히 잘되고있는지를 한번 검증을해보시면 좋을겁니다.
-// Test

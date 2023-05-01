@@ -1,7 +1,7 @@
 import { Hash } from "types/block"
 import cryptojs from "crypto-js"
 import merkle from "merkle"
-import { TransactionData, TransactionRow } from "@core/transaction/transaction.interface"
+import { Receipt, TransactionData, TransactionRow } from "@core/transaction/transaction.interface"
 import { BlockData, BlockInfo, IBlock } from "@core/block/block.interface"
 
 // npm install crypto-js
@@ -15,6 +15,17 @@ class CryptoModule {
         const { version, height, timestamp, merkleRoot, previousHash, difficulty, nonce } = data
         const value = `${version}${height}${timestamp}${merkleRoot}${previousHash}${difficulty}${nonce}`
         return this.SHA256(value)
+    }
+
+    createReceiptHash(receipt: Receipt) {
+        const {
+            sender: { publicKey },
+            received,
+            amount,
+        } = receipt
+
+        const message = [publicKey, received, amount].join("")
+        return this.SHA256(message)
     }
 
     SHA256(data: string): Hash {
