@@ -63,7 +63,6 @@ describe("CryptoModule", () => {
 
         it("data값이 옳바르지 않을경우 에러가 발생하는가 ?", () => {
             const data = [{ hash: "DC24B19FB7508611ACD8AD17F401753670CFD8DDC875125E98D82E3DF" }, { hash: "DC24B19FB7508611ACD670CFD8DD1BEBEF9C875125E98D82E3DF" }]
-
             expect(() => {
                 cryptoModule.merkleRoot(data)
             }).toThrowError()
