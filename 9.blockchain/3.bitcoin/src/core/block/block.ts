@@ -7,7 +7,7 @@ import WorkProof from "./workproof/woorkproof"
 class Block {
     constructor(private readonly crypto: CryptoModule, private readonly workProof: WorkProof) {}
 
-    createBlock(previousBlock: IBlock, data: TransactionData, adjustmentBlock: IBlock) {
+    mine(previousBlock: IBlock, data: TransactionData, adjustmentBlock: IBlock) {
         const blockData = this.createBlockData(previousBlock, data)
         const newBlock = this.workProof.run(blockData, adjustmentBlock)
         return newBlock
