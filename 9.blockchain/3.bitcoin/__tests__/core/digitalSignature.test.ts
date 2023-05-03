@@ -1,5 +1,5 @@
 import CryptoModule from "@core/crypto/crypto.module"
-import DigitalSignature from "@core/transaction/digitalSignature"
+import DigitalSignature from "@core/wallet/digitalSignature"
 import { Receipt } from "@core/transaction/transaction.interface"
 
 describe("디지털 서명 이해하기", () => {

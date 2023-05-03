@@ -1,17 +1,5 @@
 import { SignatureInput } from "elliptic"
 
-export class Sender {
-    publicKey?: string
-    account!: string
-}
-
-export class Receipt {
-    sender!: Sender
-    received!: string
-    amount!: number
-    signature?: SignatureInput
-}
-
 export class TxIn {
     txOutId?: string
     txOutIndex!: number
@@ -41,6 +29,5 @@ export class UnspentTxOut {
 }
 
 export type TransactionData = string | TransactionRow[]
-
 export type UnspentTxOutPool = UnspentTxOut[]
 export type TransactionPool = TransactionRow[]

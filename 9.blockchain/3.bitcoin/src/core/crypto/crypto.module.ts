@@ -1,8 +1,9 @@
 import { Hash } from "types/block"
 import cryptojs from "crypto-js"
 import merkle from "merkle"
-import { Receipt, TransactionData, TransactionRow } from "@core/transaction/transaction.interface"
+import { TransactionData, TransactionRow } from "@core/transaction/transaction.interface"
 import { BlockData, BlockInfo, IBlock } from "@core/block/block.interface"
+import { Receipt } from "@core/wallet/wallet.interface"
 
 // npm install crypto-js
 class CryptoModule {
