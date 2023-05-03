@@ -1,5 +1,6 @@
+import { Receipt } from "@core/wallet/wallet.interface"
 import Transaction from "./transacrtion"
-import { Receipt, TransactionRow, TxIn, TxOut, UnspentTxOut, UnspentTxOutPool } from "./transaction.interface"
+import { TransactionRow, TxIn, TxOut, UnspentTxOut, UnspentTxOutPool } from "./transaction.interface"
 
 // UnspentTxOutPool -> UnspentTxOut[]
 // UnspentTxOut[]
