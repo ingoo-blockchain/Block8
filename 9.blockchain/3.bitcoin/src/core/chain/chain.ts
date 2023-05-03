@@ -57,6 +57,4 @@ class Chain {
     }
 }
 
-const chain = new Chain()
-
 export default Chain
