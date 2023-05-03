@@ -21,7 +21,4 @@ const unspent = new Unspent(transaction)
 const accounts = new Wallet(digitalSignature)
 
 const sender = accounts.create()
-console.log(sender)
-
 const recipt = accounts.receipt("0000", 30)
-console.log(recipt)
