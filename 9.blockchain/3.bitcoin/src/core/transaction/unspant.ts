@@ -64,36 +64,6 @@ class Unspent {
         if (totalAmount < sendAmount) return true
         return false
     }
-
-    // 30 50 <-- account: a
-    // 30 / 12 15 13 15 63
-    getInput(myUnspantTxOuts: UnspentTxOut[], receiptAmount: number, signature: SignatureInput) {
-        let targetAmount = 0
-
-        const txins = myUnspantTxOuts.reduce((acc: TxIn[], unspentTxOut: UnspentTxOut) => {
-            const { amount, txOutId, txOutIndex } = unspentTxOut
-            if (targetAmount >= receiptAmount) return acc
-
-            targetAmount += amount
-            acc.push({ txOutIndex, txOutId, signature })
-
-            return acc
-        }, [] as TxIn[])
-
-        return txins
-    }
-
-    // 보내는사람 주소, 보낼 금액, 나의 주소, 나의 금액
-    getOutput(received: string, amount: number, sender: string, balance: number) {
-        const txouts: TxOut[] = []
-        txouts.push({ account: received, amount })
-
-        if (balance > 0) {
-            txouts.push({ account: sender, amount: balance })
-        }
-
-        return txouts
-    }
 }
 
 export default Unspent
