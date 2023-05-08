@@ -1,22 +1,63 @@
 import { IBlock } from "@core/block/block.interface"
-import { TransactionRow, TxIn, TxOut } from "./transaction.interface"
+import { TransactionData, TransactionPool, TransactionRow, TxIn, TxOut, UnspentTxOut } from "./transaction.interface"
 import CryptoModule from "@core/crypto/crypto.module"
 import { SignatureInput } from "elliptic"
 import { Receipt } from "@core/wallet/wallet.interface"
 
 class Transaction {
     private readonly REWARD = 50
-
+    private readonly transactionPool: TransactionPool = []
     constructor(private readonly crypto: CryptoModule) {}
 
-    create(receipt: Receipt) {
-        const totalAmount = 50
-        const txin1 = this.createTxIn(1, "", receipt.signature)
+    getPool() {
+        return this.transactionPool
+    }
 
-        const txout_sender = this.createTxOut(receipt.sender.account, totalAmount - receipt.amount)
-        const txout_recevied = this.createTxOut(receipt.received, receipt.amount)
+    create(receipt: Receipt, myUnspantTxOuts: UnspentTxOut[]) {
+        if (!receipt.signature) throw new Error("서명이 존재하지 않습니다.")
 
-        return this.createRow([txin1], [txout_sender, txout_recevied])
+        // balance: 50
+        const [txIns, balance] = this.createInput(myUnspantTxOuts, receipt.amount, receipt.signature)
+        const txOuts = this.createOutput(receipt.received, receipt.amount, receipt.sender.account, balance)
+        const transaction: TransactionRow = {
+            txIns,
+            txOuts,
+        }
+
+        transaction.hash = this.serilizeRow(transaction)
+        this.transactionPool.push(transaction)
+        return transaction
+    }
+
+    createOutput(received: string, amount: number, sender: string, balance: number) {
+        const txouts: TxOut[] = []
+        txouts.push({ account: received, amount })
+
+        //
+        if (balance - amount > 0) {
+            txouts.push({ account: sender, amount: balance - amount })
+        }
+
+        const outAmount = txouts.reduce((acc, txout: TxOut) => acc + txout.amount, 0)
+        if (balance !== outAmount) throw new Error("금액 오류")
+
+        return txouts
+    }
+
+    createInput(myUnspantTxOuts: UnspentTxOut[], receiptAmount: number, signature: SignatureInput): [TxIn[], number] {
+        let targetAmount = 0
+
+        const txins = myUnspantTxOuts.reduce((acc: TxIn[], unspentTxOut: UnspentTxOut) => {
+            const { amount, txOutId, txOutIndex } = unspentTxOut
+            if (targetAmount >= receiptAmount) return acc
+
+            targetAmount += amount
+            acc.push({ txOutIndex, txOutId, signature })
+
+            return acc
+        }, [] as TxIn[])
+
+        return [txins, targetAmount]
     }
 
     createTxOut(account: string, amount: number): TxOut {
@@ -75,6 +116,17 @@ class Transaction {
         const txin = this.createTxIn(latestBlockHeight + 1)
         const txout = this.createTxOut(account, this.REWARD)
         return this.createRow([txin], [txout])
+    }
+
+    update(transaction: TransactionRow) {
+        const findCallback = (tx: TransactionRow) => transaction.hash === tx.hash
+        const index = this.transactionPool.findIndex(findCallback)
+        if (index !== -1) this.transactionPool.splice(index, 1)
+    }
+
+    sync(transactions: TransactionData) {
+        if (typeof transactions === "string") return
+        transactions.forEach(this.update.bind(this))
     }
 }
 

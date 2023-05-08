@@ -40,7 +40,7 @@ class Wallet {
     }
 
     private getPrivate(account: string): string {
-        return this.accounts.filter((v) => v.account === account)[0].account
+        return this.accounts.filter((v) => v.account === account)[0].privateKey
     }
 
     public receipt(received: string, amount: number) {
@@ -61,7 +61,9 @@ class Wallet {
     }
 
     public sign() {}
-    public verify() {}
+    public verify(receipt: Receipt): boolean {
+        return this.digitalSignature.verify(receipt)
+    }
 }
 
 export default Wallet

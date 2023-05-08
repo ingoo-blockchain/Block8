@@ -57,7 +57,7 @@ class CryptoModule {
                     return true
                 })
                 .map((v) => v.hash) as string[]
-            return merkle("sha256").sync(sync).root()
+            return merkle("sha256").sync(sync).root() // 01239127839127983712938
         }
     }
 

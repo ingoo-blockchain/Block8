@@ -1,24 +1,51 @@
-import { GENESIS } from "@constants/block.constants"
 import Block from "@core/block/block"
 import ProofOfWork from "@core/block/workproof/proofofwork"
 import WorkProof from "@core/block/workproof/woorkproof"
+import Chain from "@core/chain/chain"
 import CryptoModule from "@core/crypto/crypto.module"
-
-import DigitalSignature from "@core/wallet/digitalSignature"
+import Ingchain from "@core/ingchain"
 import Transaction from "@core/transaction/transacrtion"
-import { UnspentTxOut } from "@core/transaction/transaction.interface"
 import Unspent from "@core/transaction/unspant"
-import { Receipt } from "@core/wallet/wallet.interface"
+import DigitalSignature from "@core/wallet/digitalSignature"
 import Wallet from "@core/wallet/wallet"
+import App from "@serve/app"
+
+const chain = new Chain()
 
 const crypto = new CryptoModule()
-const digitalSignature = new DigitalSignature(crypto)
-const proofofwork = new ProofOfWork(crypto)
-const workProof = new WorkProof(proofofwork)
-const block = new Block(crypto, workProof)
+const proof = new ProofOfWork(crypto)
+const workproof = new WorkProof(proof)
 const transaction = new Transaction(crypto)
-const unspent = new Unspent(transaction)
+
+const block = new Block(crypto, workproof)
+const unspent = new Unspent()
+
+const digitalSignature = new DigitalSignature(crypto)
 const accounts = new Wallet(digitalSignature)
 
-const sender = accounts.create()
-const recipt = accounts.receipt("0000", 30)
+const web7722 = new Ingchain(chain, block, transaction, unspent, accounts)
+
+const app = App(web7722)
+
+app.listen(8545, () => {
+    console.log(`server start`)
+})
+
+// const sender = accounts.create()
+// const received = accounts.create()
+
+// const receipt = web7722.accounts.receipt(received.account, 30)
+
+// web7722.mineBlock(sender.account)
+// web7722.mineBlock(received.account)
+
+// web7722.sendTransaction(receipt)
+// web7722.mineBlock(sender.account)
+
+// console.log(unspent.getUnspentTxPool())
+
+// const balance1 = web7722.getBalance(sender.account) // 50 - 30 = 20
+// const balance2 = web7722.getBalance(received.account) // 80
+
+// console.log(balance1)
+// console.log(balance2)

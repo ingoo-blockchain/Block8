@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <h1>IngCoin</h1>
+        <button id="wallet_btn">지갑생성</button>
+
+        <ul id='"wallet_list'>
+            <li>privateKey : <span class="privateKey"></span></li>
+            <li>publicKey : <span class="publicKey"></span></li>
+            <li>account: <span class="account"></span></li>
+        </ul>
+
+        <h2>Wallet List</h2>
+        <ul id="wallet_list2"></ul>
+    </body>
+
+    <script type="text/javascript">
+        const walletBtn = document.querySelector("#wallet_btn")
+
+        const createWallet = async () => {
+            const response = await axios.post("http://127.0.0.1:3000/wallet")
+            console.log(response.data)
+
+            view(response.data)
+            walletList()
+        }
+
+        const view = (accounts) => {
+            const account = document.querySelector(".account")
+            const privateKey = document.querySelector(".privateKey")
+            const publicKey = document.querySelector(".publicKey")
+
+            account.innerHTML = accounts.account
+            privateKey.innerHTML = accounts.privateKey
+            publicKey.innerHTML = accounts.publicKey
+        }
+
+        const walletList = async () => {
+            const walletList = document.querySelector("#wallet_list2")
+            const { data } = await axios.get("http://127.0.0.1:3000/wallet")
+            // response => data => ["asdfasdfasdf","asdfasdfasdf","asdfasdfasdf","asdfasdf"]
+            const accountList = data.map((account) => `<li>${account}</li>`).join("")
+            walletList.innerHTML = accountList
+        }
+
+        walletBtn.addEventListener("click", createWallet)
+        walletList()
+    </script>
+</html>
