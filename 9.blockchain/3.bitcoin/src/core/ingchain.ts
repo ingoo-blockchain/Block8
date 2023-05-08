@@ -39,6 +39,7 @@ class Ingchain {
     public getBalance(account: string) {
         const myUnspantTxOuts = this.unspent.me(account)
         const balance = this.unspent.getAmount(myUnspantTxOuts)
+
         return balance
     }
 }
