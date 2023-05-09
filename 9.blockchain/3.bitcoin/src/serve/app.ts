@@ -38,12 +38,17 @@ export default (blockchain: Ingchain) => {
     })
 
     app.post("/transaction", (req, res) => {
-        const { receipt } = req.body
+        try {
+            const { receipt } = req.body
+            receipt.amount = parseInt(receipt.amount)
+            const transaction = blockchain.sendTransaction(receipt)
 
-        const transaction = blockchain.sendTransaction(receipt)
-        res.json({
-            transaction,
-        })
+            res.json({
+                transaction,
+            })
+        } catch (e) {
+            console.error(e)
+        }
     })
 
     return app

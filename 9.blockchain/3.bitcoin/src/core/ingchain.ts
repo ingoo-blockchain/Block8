@@ -6,7 +6,7 @@ import Wallet from "./wallet/wallet"
 import { Receipt } from "./wallet/wallet.interface"
 
 class Ingchain {
-    constructor(private readonly chain: Chain, private readonly block: Block, private readonly transaction: Transaction, private readonly unspent: Unspent, public readonly accounts: Wallet) {}
+    constructor(public readonly chain: Chain, private readonly block: Block, private readonly transaction: Transaction, private readonly unspent: Unspent, public readonly accounts: Wallet) {}
 
     public mineBlock(account: string) {
         // 이전블록 , 트랜잭션,  10번째 블록

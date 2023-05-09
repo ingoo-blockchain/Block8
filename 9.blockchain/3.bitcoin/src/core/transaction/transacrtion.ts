@@ -30,15 +30,16 @@ class Transaction {
     }
 
     createOutput(received: string, amount: number, sender: string, balance: number) {
+        console.log(received, amount, sender, balance)
         const txouts: TxOut[] = []
         txouts.push({ account: received, amount })
 
-        //
         if (balance - amount > 0) {
             txouts.push({ account: sender, amount: balance - amount })
         }
 
         const outAmount = txouts.reduce((acc, txout: TxOut) => acc + txout.amount, 0)
+        console.log(outAmount, balance)
         if (balance !== outAmount) throw new Error("금액 오류")
 
         return txouts

@@ -6,6 +6,7 @@
     "scripts": {
         "build": "tsc && tsc-alias",
         "dev": "nodemon",
+        "client": "ts-node -r tsconfig-paths/register src/client.ts",
         "test": "jest",
         "exec": "ts-node -r tsconfig-paths/register src/index.ts",
         "wallet": "ts-node -r tsconfig-paths/register src/wallet/index.ts"

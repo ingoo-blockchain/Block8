@@ -1,3 +1,4 @@
+import P2PNetwork from "@serve/p2p"
 import Block from "@core/block/block"
 import ProofOfWork from "@core/block/workproof/proofofwork"
 import WorkProof from "@core/block/workproof/woorkproof"
@@ -10,7 +11,6 @@ import DigitalSignature from "@core/wallet/digitalSignature"
 import Wallet from "@core/wallet/wallet"
 import App from "@serve/app"
 import Message from "@serve/message"
-import P2PNetwork from "@serve/p2p"
 
 const chain = new Chain()
 
@@ -33,10 +33,8 @@ const app = App(web7722)
 //     console.log(`server start`)
 // })
 
-const { account } = accounts.create()
-
-web7722.mineBlock(account)
-
 const message = new Message(web7722)
 const p2p = new P2PNetwork(message)
-p2p.listen(8555)
+p2p.listen(8556)
+
+p2p.connet(8555, "127.0.0.1")
