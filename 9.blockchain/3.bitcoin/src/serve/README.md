@@ -36,3 +36,25 @@ TCP 기반으로 Node들과 통신을 진행함.
 이돈을 상대방에게 주고싶다거나,
 
 아주 심플하게 `wallet`
+
+## P2P
+
+어려운 스킬적으로 보일수는있는데요
+
+프로그램
+하나의 프로세스 <--
+
+`client` 와 `server`
+
+프로그램 <-- 즉 코드에서 client측코드와 server측코드를 구현한다는거에요
+
+`server` socket open
+
+front단에서 사용했던 client측 소켓 코드들과
+back단에서 사용했던 server측 소켓 코드이
+한 파일에 같이있는것
+
+```js
+io.emit("hello", { payload: "asdf" })
+io.on("hello", (data: string) => {})
+```
