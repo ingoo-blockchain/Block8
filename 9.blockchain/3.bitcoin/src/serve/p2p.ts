@@ -1,6 +1,7 @@
 import net, { Socket } from "net"
 import { MessageData } from "./network.interface"
 import { IBlock } from "@core/block/block.interface"
+import Message from "./message"
 
 // (socket: Socket) => {
 //     console.log(socket.remotePort)
@@ -34,6 +35,7 @@ import { IBlock } from "@core/block/block.interface"
 
 class P2PNetwork {
     private readonly sockets: Socket[] = []
+    constructor(private readonly message: Message) {}
     // server
     public listen(port: number) {
         const connection = (socket: Socket) => this.handleConnection(socket)
@@ -52,7 +54,16 @@ class P2PNetwork {
         console.log(`[+] New Connection from ${socket.remoteAddress}:${socket.remotePort}`)
         this.sockets.push(socket)
 
-        // 브로드캐스트
+        // 하드코딩
+        const dataCallback = (data: Buffer) => this.message.handler(socket, data)
+        socket.on("data", dataCallback)
+
+        const message: MessageData = {
+            type: "latestBlock",
+            payload: {} as IBlock,
+        }
+        socket.write(JSON.stringify(message))
+
         const disconnect = () => this.handleDisconnect(socket)
         socket.on("close", disconnect)
         socket.on("error", disconnect)

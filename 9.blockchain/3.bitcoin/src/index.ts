@@ -9,6 +9,7 @@ import Unspent from "@core/transaction/unspant"
 import DigitalSignature from "@core/wallet/digitalSignature"
 import Wallet from "@core/wallet/wallet"
 import App from "@serve/app"
+import Message from "@serve/message"
 import P2PNetwork from "@serve/p2p"
 
 const chain = new Chain()
@@ -32,5 +33,10 @@ const app = App(web7722)
 //     console.log(`server start`)
 // })
 
-const p2p = new P2PNetwork()
+const { account } = accounts.create()
+
+web7722.mineBlock(account)
+
+const message = new Message(web7722)
+const p2p = new P2PNetwork(message)
 p2p.listen(8555)
